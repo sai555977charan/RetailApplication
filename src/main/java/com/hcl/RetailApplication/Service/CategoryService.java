@@ -13,7 +13,7 @@ import com.hcl.RetailApplication.Repository.CategoriesRepository;
 public class CategoryService {
 	@Autowired
 	CategoriesRepository categoriesRepository;
-	public List<Categories> getall(int catgeoryId){
+	public Categories getall(int catgeoryId){
 		return categoriesRepository.findByCategoryId(catgeoryId);
 		
 	}
@@ -22,9 +22,12 @@ public class CategoryService {
 		
 	}
 	
-public Categories save(Categories categories)
+public void update(Categories categories)
+
 {
-	return categoriesRepository .save(categories);
+	int catCount=categories.getCategoryCount();
+	catCount++;
+	 categoriesRepository .update(categories.getCategoryId(),categories.getCategoryName(),catCount);
 }
 
 public List<?> getAnalytics(){

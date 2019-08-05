@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hcl.RetailApplication.Entity.User;
 import com.hcl.RetailApplication.Entity.UserCatMetrics;
+import com.hcl.RetailApplication.Entity.UserProdMetrics;
 import com.hcl.RetailApplication.Repository.UserCatRepository;
 
 @Service
@@ -14,7 +15,7 @@ import com.hcl.RetailApplication.Repository.UserCatRepository;
 public class UserCatService {
 	@Autowired 
 	UserCatRepository userCatRepository;
-	public List<UserCatMetrics> getMetrics(int userId,int categoryId)
+public 	UserCatMetrics getMetrics(int userId,int categoryId)
 	{
 		return userCatRepository.findByUserIdAndCatId(userId,categoryId);
 	}
@@ -22,9 +23,12 @@ public class UserCatService {
 	{
 		return userCatRepository.findByUserId(userId);
 	}
-	public UserCatMetrics save(UserCatMetrics user)
-	{
-		return userCatRepository .save(user);
+	public void update(UserCatMetrics user) {
+
+	int catCount=user.getCatCount();
+	catCount++;
+	
+		 userCatRepository .update(user.getUserId(),user.getCatId(),catCount);
 	}
 
 	

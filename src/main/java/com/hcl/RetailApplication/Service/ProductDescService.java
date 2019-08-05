@@ -14,13 +14,15 @@ public class ProductDescService {
 	@Autowired
 	ProductsRepository productsRepository;
 	
-	public List<Products> getById(int productId){
+	public Products getById(int productId){
 		return  productsRepository.findByProductId(productId);
 		
 	}
-	public Products save(Products products)
+	public void update(Products products)
 	{
-		return  productsRepository.save(products);
+		int prodCount=products.getProductCount();
+		prodCount++;
+	  productsRepository.update(products.getProductId(),products.getProductName(),prodCount);
 	}
 	public List<?> getProdAnalytics(){
 		return productsRepository.getAnalytics();

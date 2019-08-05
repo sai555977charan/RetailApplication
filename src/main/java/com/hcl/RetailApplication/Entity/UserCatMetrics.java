@@ -10,10 +10,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="usercatmetrics")
 public class UserCatMetrics {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="metrics_id")
-	private int metricsId;
+	
+	
+	
 
 	@Column(name="user_id")
 
@@ -21,7 +20,7 @@ public class UserCatMetrics {
 
 	@Column(name="cat_id")
 	private int catId;
-
+	@Id
 	@Column(name="cat_count")
 	private int catCount;
 	public int getUserId() {

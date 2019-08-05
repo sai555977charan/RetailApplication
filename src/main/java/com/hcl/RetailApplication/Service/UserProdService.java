@@ -13,13 +13,19 @@ import com.hcl.RetailApplication.Repository.UserProdRepository;
 public class UserProdService {
 	@Autowired 
 	UserProdRepository userProdRepository;
-	public List<UserProdMetrics> getMetrics(int userId)
+	public UserProdMetrics getMetrics(int userId,int productId)
+	{
+		return userProdRepository.findByUserIdAndProdId(userId,productId);
+	}
+	public List<UserProdMetrics> getMetrics1(int userId)
 	{
 		return userProdRepository.findByUserId(userId);
 	}
-	public UserProdMetrics save(UserProdMetrics user)
+	public void update(UserProdMetrics user)
 	{
-		return userProdRepository .save(user);
+		int prodCount=user.getProdCount();
+		prodCount++;
+		 userProdRepository .update(user.getUserId(),user.getProdId(),prodCount);
 	}
 	
 	
